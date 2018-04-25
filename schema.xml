@@ -1,0 +1,31 @@
+<database name="bookstore" defaultMethod="native">
+    
+    <!-- modelo inicial -->
+    <table name="book" phpName="Book">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="title" type="varchar"  required="true" />
+        <column name="isbn" type="varchar" required="true" />
+        <column name="publisher_id" type="integer" required="false" />
+        <column name="author_id" type="integer" required="false" />
+        <unique name="unique_isbn">
+            <unique-column name="isbn"/>
+        </unique>
+        <foreign-key foreignTable="publisher" phpName="Publisher" refPhpName="Book" onDelete="setNull" onUpdate="cascade">    
+            <reference local="publisher_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="author" phpName="Author" onDelete="setNull" onUpdate="cascade">    
+            <reference local="author_id" foreign="id"/>
+        </foreign-key>
+    </table>
+    <table name="author" phpName="Author">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="first_name" type="varchar" required="true" />
+        <column name="last_name" type="varchar" required="true" />
+    </table>
+    <table name="publisher" phpName="Publisher">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="name" type="varchar" required="true" />
+    </table>
+    <!-- fin de modelo inicial -->
+
+</database>

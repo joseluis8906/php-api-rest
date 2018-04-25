@@ -1,0 +1,21 @@
+propel:
+  database:
+      connections:
+          bookstore:
+              adapter: pgsql
+              classname: Propel\Runtime\Connection\ConnectionWrapper
+              #dsn: "mysql:host=localhost;dbname=my_db_name"
+              dsn: "pgsql:host=172.17.0.3;dbname=bookstore"
+              user: "bookstore"
+              password: "K3J9 8LMN"
+              attributes:
+              settings:
+                charset: utf8
+  runtime:
+      defaultConnection: bookstore
+      connections:
+          - bookstore
+  generator:
+      defaultConnection: bookstore
+      connections:
+          - bookstore
